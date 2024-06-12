@@ -40,11 +40,18 @@ btn.addEventListener("click", async (evt)=>{
         amtval=1;
         amt.value="1";
     }
-    const URL=`https://v6.exchangerate-api.com/v6/afb0ebb9d423e2a361ce8d20/latest/${fcurr.value.toLowerCase()}`;
-    let response= await fetch(URL);
-    let data= await response.json();
-    let rate=data.conversion_rates[tcurr.value];
-    let finalamt=amtval*rate;
-    msg.innerText=`${amtval} ${fcurr.value} = ${finalamt} ${tcurr.value}`;
-    coins.play();
+    else if(amtval>=1)
+    {
+        const URL=`https://v6.exchangerate-api.com/v6/afb0ebb9d423e2a361ce8d20/latest/${fcurr.value.toLowerCase()}`;
+        let response= await fetch(URL);
+        let data= await response.json();
+        let rate=data.conversion_rates[tcurr.value];
+        let finalamt=amtval*rate;
+        msg.innerText=`${amtval} ${fcurr.value} = ${finalamt} ${tcurr.value}`;
+        coins.play();
+    }    
+    else
+    {
+        alert("Enter input in numerical format.");
+    }
 });
